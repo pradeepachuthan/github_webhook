@@ -1,11 +1,12 @@
 
 
-require 'capistrano/rbenv'
+require 'bundler/capistrano'
+set :bundle_gemfile, -> { 'Gemfile' }
 
 set :application, "demo"
 set :repository,  "https://github.com/pradeepachuthan/github_webhook.git"
 
-set :rbenv_path, '/usr/bin/rbenv'
+set :rbenv_path, '/usr/local/bin/rbenv'
 set :rbenv_ruby_version, '2.1.2'
 
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
