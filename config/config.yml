@@ -1,0 +1,11 @@
+  master:
+  - role: 'production'
+    node_ip: '192.168.1.1'
+    notify: 'abc@gmail.com'
+  - role: 'production'
+    node_ip: '192.168.1.2'
+    notify: 'def@gmail.com' 
+  development:
+    role: 'production'
+    node_ip: '192.168.1.2'
+    notify: 'def@gmail.com'
