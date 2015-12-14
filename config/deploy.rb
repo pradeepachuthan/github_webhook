@@ -3,6 +3,9 @@
 set :application, "demo"
 set :repository,  "https://github.com/pradeepachuthan/github_webhook.git"
 
+set :rbenv_path, '/usr/local/rbenv'
+set :rbenv_ruby_version, '2.1.2'
+
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
