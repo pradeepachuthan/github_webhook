@@ -1,16 +1,15 @@
 
-require 'capistrano/version'
+#require 'capistrano/version'
 require 'rubygems'
 require 'yaml'
 require 'bundler/capistrano'
-
+require 'capistrano/rbenv'
 
 set :application, "demo"
 set :repository,  "https://github.com/pradeepachuthan/github_webhook.git"
-set :rbenv_path, '/home/ubuntu/.rbenv/shims/ruby'
-set :rbenv_ruby_version, :local
 set :bundle_gemfile, -> { 'Gemfile' }
-
+set :rbenv_path, "/usr/local/rbenv"
+set :rbenv_ruby_version, "2.1.2"
 
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
@@ -39,12 +38,12 @@ set :ssh_options, {
 
 
 
-namespace :deploy do
-  task :restart do
-  	p "Executing restarting"
-  	# run "cd #{deploy_to}/current/"
-    # run "if [ -f #{unicorn_pid} ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf}  -D; fi"
-  end
+#namespace :deploy do
+#  task :restart do
+#  	p "Executing restarting"
+#  	# run "cd #{deploy_to}/current/"
+#    # run "if [ -f #{unicorn_pid} ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf}  -D; fi"
+#  end
   # task :start do
   # 	p "Executing start"
   #   run "cd #{deploy_to}/current/ && bundle exec unicorn -c #{unicorn_conf} -D"
@@ -52,7 +51,7 @@ namespace :deploy do
   # task :stop do
   #   run "if [ -f #{unicorn_pid} ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
   # end
-end
+#end
 
 
 # role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
