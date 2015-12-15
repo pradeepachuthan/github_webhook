@@ -44,6 +44,7 @@ DEPENDENCIES
   capistrano (= 2.15.4)
   capistrano-ext
   capistrano-rbenv (= 1.0.5)
+  highline (~> 1.7, >= 1.7.8)
   net-ssh
   sinatra
   unicorn
