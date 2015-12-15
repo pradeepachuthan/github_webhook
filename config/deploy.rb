@@ -10,6 +10,7 @@ set :repository,  "https://github.com/pradeepachuthan/github_webhook.git"
 set :bundle_gemfile, -> { 'Gemfile' }
 set :rbenv_path, "/usr/local/rbenv"
 set :rbenv_ruby_version, "2.1.2"
+set :app_file, "web_hook_api.rb"
 
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
@@ -25,7 +26,7 @@ set :host, "#{user}@52.35.114.16"
 role :web, "52.35.114.16"                          # Your HTTP server, Apache/etc
 role :app, "52.35.114.16"                          # This may be the same as your `Web` server
 
-set :deploy_to, "/var/www"
+set :deploy_to, "/var/www/"
 set :unicorn_conf, "#{deploy_to}/current/unicorn.rb"
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 
@@ -41,12 +42,13 @@ set :ssh_options, {
 namespace :deploy do
   task :restart do
   	p "Executing restarting"
-     run "cd #{deploy_to}/current/"
+#  	# run "cd #{deploy_to}/current/"
      run "if [ -f #{unicorn_pid} ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf}  -D; fi"
   end
    task :start do
   	p "Executing start"
      run "cd #{deploy_to}/current/ && bundle exec unicorn -c #{unicorn_conf} -D"
+     run "sudo service nginx start"
    end
    task :stop do
      run "if [ -f #{unicorn_pid} ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
