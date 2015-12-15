@@ -14,8 +14,6 @@ GEM
     capistrano-rbenv (1.0.5)
       capistrano (< 3)
       capistrano-platform-resources (>= 0.1.3)
-    capistrano-rvm (0.0.3)
-      capistrano
     highline (1.7.8)
     kgio (2.10.0)
     net-scp (1.2.1)
@@ -46,7 +44,6 @@ DEPENDENCIES
   capistrano (= 2.15.4)
   capistrano-ext
   capistrano-rbenv (= 1.0.5)
-  capistrano-rvm
   sinatra
   unicorn
 
