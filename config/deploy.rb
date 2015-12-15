@@ -1,7 +1,6 @@
 
 
 require 'bundler/capistrano'
-set :bundle_gemfile, -> { 'Gemfile' }
 
 set :application, "demo"
 set :repository,  "https://github.com/pradeepachuthan/github_webhook.git"
@@ -32,6 +31,9 @@ set :ssh_options, {
   paranoid: true, 
   keys: "~/.ssh/id_rsa" 
 }
+
+
+
 
 namespace :deploy do
   task :restart do
