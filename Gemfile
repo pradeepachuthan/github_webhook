@@ -1,6 +1,7 @@
 
 source 'http://rubygems.org'
 # ruby '2.1.2'
+gem unicorn
 gem 'sinatra'
 gem 'capistrano', '2.15.4'
 gem 'capistrano-ext'
