@@ -1,5 +1,5 @@
 # define paths and filenames
-deploy_to = "/var/www/"
+deploy_to = "/var/www"
 rails_root = "#{deploy_to}/current"
 pid_file = "#{deploy_to}/shared/pids/unicorn.pid"
 socket_file= "#{deploy_to}/shared/unicorn.sock"
@@ -23,24 +23,24 @@ before_exec do |server|
   ENV['BUNDLE_GEMFILE'] = File.expand_path('../Gemfile', File.dirname(__FILE__))
 end
 
-before_fork do |server, worker|
-  defined?(ActiveRecord::Base) and
-      ActiveRecord::Base.connection.disconnect!
+#before_fork do |server, worker|
+ # defined?(ActiveRecord::Base) and
+  #    ActiveRecord::Base.connection.disconnect!
 
   # zero downtime deploy magic:
   # if unicorn is already running, ask it to start a new process and quit.
-  if File.exists?(old_pid) && server.pid != old_pid
-    begin
-      Process.kill("QUIT", File.read(old_pid).to_i)
-    rescue Errno::ENOENT, Errno::ESRCH
+ # if File.exists?(old_pid) && server.pid != old_pid
+ #   begin
+ #     Process.kill("QUIT", File.read(old_pid).to_i)
+ #   rescue Errno::ENOENT, Errno::ESRCH
       # someone else did our job for us
-    end
-  end
-end
+ #   end
+ # end
+#end
 
-after_fork do |server, worker|
+#after_fork do |server, worker|
 
   # re-establish activerecord connections.
-  defined?(ActiveRecord::Base) and
-      ActiveRecord::Base.establish_connection
-end
+ # defined?(ActiveRecord::Base) and
+  #    ActiveRecord::Base.establish_connection
+#end
