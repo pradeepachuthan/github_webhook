@@ -1,5 +1,5 @@
 # define paths and filenames
-deploy_to = "/var/www/demo"
+deploy_to = "/var/www/"
 rails_root = "#{deploy_to}/current"
 pid_file = "#{deploy_to}/shared/pids/unicorn.pid"
 socket_file= "#{deploy_to}/shared/unicorn.sock"
