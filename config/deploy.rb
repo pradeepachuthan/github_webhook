@@ -26,7 +26,7 @@ role :web, "52.35.114.16"                          # Your HTTP server, Apache/et
 role :app, "52.35.114.16"                          # This may be the same as your `Web` server
 
 set :deploy_to, "/var/www/"
-set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
+set :unicorn_conf, "#{deploy_to}/current/unicorn.rb"
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 
 set :ssh_options, { 
