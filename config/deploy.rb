@@ -1,51 +1,44 @@
+require 'capistrano/version'
+require 'rubygems'
+require 'yaml'
+require 'capistrano/rvm'
+#require 'capinatra'
+load 'deploy' if respond_to?(:namespace) # cap2 differentiator
 
-
-require 'bundler/capistrano'
-
-
+# app settings
+set :app_file, "web_hook_api.rb"
 set :application, "demo"
-set :repository,  "https://github.com/pradeepachuthan/github_webhook.git"
-set :bundle_flags, "--deployment --quiet --local"
-set :rbenv_path, '/usr/local/bin/rbenv'
-set :rbenv_ruby_version, '2.1.2'
-set :bundle_gemfile, -> { 'Gemfile' }
+set :domain, "52.35.114.16"
+set :rvm_ruby_version, '2.1.2' 
 
+role :app, domain
+role :web, domain
+role :db,  domain, :primary => true
 
-set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
-
-set :use_sudo, false
-set(:run_method) { use_sudo ? :sudo : :run }
-# default_run_options[:pty] = true
+# general settings
 set :user, "ubuntu"
-set :group, user
-set :runner, user
-set :host, "#{user}@52.35.114.16"
+set :use_sudo, false
+set :deploy_to, "/var/www/papricek/#{application}"
+#set :deploy_via, :remote_cache
 
-role :web, "52.35.114.16"                          # Your HTTP server, Apache/etc
-role :app, "52.35.114.16"                          # This may be the same as your `Web` server
-
-set :deploy_to, "/var/www/"
-set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
-set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
-
-set :ssh_options, { 
-  forward_agent: true, 
-  paranoid: true, 
-  keys: "~/.ssh/id_rsa" 
-}
-
+# scm settings
+set :repository, "https://github.com/pradeepachuthan/github_webhook.git"
+set :scm, "git"
+set :scm_passphrase, ""
+set :scm_verbose, true
+set :branch, "master"
+#set :git_enable_submodules, 1
 
 
 
 namespace :deploy do
   task :restart do
-  	p "Executing restarting"
-  	run "cd #{deploy_to}/current/ && bundle install"
+    p "Executing restarting"
+    run "cd #{deploy_to}/current/ && bundle install"
     run "if [ -f #{unicorn_pid} ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf}  -D; fi"
   end
   task :start do
-  	p "Executing start"
+    p "Executing start"
     run "cd #{deploy_to}/current/ && bundle exec unicorn -c #{unicorn_conf} -D"
   end
   task :stop do
@@ -54,20 +47,5 @@ namespace :deploy do
 end
 
 
-# role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-# role :db,  "your slave db-server here"
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end

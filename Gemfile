@@ -6,4 +6,3 @@ gem 'capistrano', '2.15.4'
 gem 'capistrano-ext'
 gem 'capistrano-rbenv', '1.0.5'
 
-gem 'capistrano-rvm'
