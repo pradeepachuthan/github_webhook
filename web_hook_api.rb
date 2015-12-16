@@ -38,5 +38,5 @@ end
 
 post '/deploy' do
   p "before updating", request.body.read
-  AutoDeployment.update(request.body.read)
+#  AutoDeployment.update(request.body.read)
 end
