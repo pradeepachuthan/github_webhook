@@ -11,7 +11,7 @@ class AutoDeployment <  Sinatra::Application
   
   def self.update(json_params)
     puts "1234 doing Inside update itesthowing"
-    request_payload = JSON.parse(File.read('payload.json'))
+    request_payload = JSON.parse(json_params)
     if request_payload.nil? or !request_payload.has_key?('ref')
       raise "Invalid Payload"
     else
