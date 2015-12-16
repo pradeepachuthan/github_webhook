@@ -9,6 +9,7 @@ SETTINGS ||= YAML.load_file(File.join(Dir.pwd, 'config/config.yml'))
 class AutoDeployment <  Sinatra::Application
   
   def self.update(json_params)
+    puts "Inside update"
     request_payload = JSON.parse(json_params)
     if request_payload.nil? or !request_payload.has_key?('ref')
       raise "Invalid Payload"
