@@ -1,6 +1,8 @@
 # define paths and filenames
 deploy_to = "/var/www"
 rails_root = "#{deploy_to}/current"
+working_directory rails_root
+
 pid_file = "#{deploy_to}/shared/pids/unicorn.pid"
 socket_file= "#{deploy_to}/shared/unicorn.sock"
 log_file = "#{rails_root}/log/unicorn.log"
