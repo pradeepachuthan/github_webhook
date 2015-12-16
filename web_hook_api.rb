@@ -35,6 +35,6 @@ class AutoDeployment <  Sinatra::Application
 
 end
 
-get '/deploy' do
+post '/deploy' do
   AutoDeployment.update(request.body.read)
 end
