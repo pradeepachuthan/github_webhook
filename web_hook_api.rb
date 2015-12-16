@@ -39,5 +39,5 @@ end
 post '/deploy' do
 content_type :json
   p "before updating", request.body.read
-#  AutoDeployment.update(request.body.read)
+  AutoDeployment.update(request.body.read)
 end
