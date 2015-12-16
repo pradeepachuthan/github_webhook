@@ -36,5 +36,6 @@ class AutoDeployment <  Sinatra::Application
 end
 
 post '/deploy' do
+  p "before updating"
   AutoDeployment.update(request.body.read)
 end
