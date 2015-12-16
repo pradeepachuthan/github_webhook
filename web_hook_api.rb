@@ -2,7 +2,7 @@ require 'sinatra'
 require 'json'
 require 'yaml'
 
-set :bind, '0.0.0.0'
+#set :bind, '0.0.0.0'
 
 SETTINGS ||= YAML.load_file(File.join(Dir.pwd, 'config/config.yml'))
 
@@ -36,5 +36,6 @@ class AutoDeployment <  Sinatra::Application
 end
 
 get '/deploy' do
-  AutoDeployment.update(request.body.read)
+  puts "Hello world"
+  #AutoDeployment.update(request.body.read)
 end
