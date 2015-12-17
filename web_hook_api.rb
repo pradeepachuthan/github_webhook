@@ -10,7 +10,7 @@ SETTINGS ||= YAML.load_file(File.join(Dir.pwd, 'config/config.yml'))
 class AutoDeployment <  Sinatra::Application
   @queue = :deploy
 
-  def self.perform(json_params)
+  def self.update(json_params)
     puts "1234 doing Inside update itesthowing"
     request_payload = JSON.parse(json_params)
      p "After parsing the data"
