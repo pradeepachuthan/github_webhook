@@ -1,4 +1,4 @@
-  master:
+  demo:
   - role: 'staging'
     node_ip: '52.31.107.95'
     notify: 'pradeep.achuthan@zipgo.in'
