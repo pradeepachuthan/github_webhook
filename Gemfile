@@ -8,6 +8,4 @@ gem 'capistrano-ext'
 gem 'capistrano-rbenv', '1.0.5'
 gem 'resque' 
 gem 'resque-web', require: 'resque_web'
-gem 'pry'
-gem 'byebug'
 	
