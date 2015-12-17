@@ -2,7 +2,7 @@
 set :user, "ubuntu"
 
 # branch that is going to be used to deploy release. You may set it from console: cap deploy -s branch=_branch_name
-set :branch, fetch(:branch, "master")
+set :branch, fetch(:branch, "demo")
 
 set :rails_env, "staging"
 
