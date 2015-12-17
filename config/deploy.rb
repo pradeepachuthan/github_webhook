@@ -19,12 +19,7 @@ set :default_stage, "staging"
 set :application, "demo"
 set :repository,  "https://github.com/pradeepachuthan/github_webhook.git"
 set :bundle_gemfile, -> { 'Gemfile' }
-require 'capistrano/ext/multistage'
 
-# stages list. Dont muss up with rails environment. Stage is a settings for capistrano deployment.
-# you may run any stage with: cap production deploy
-set :stages, %w(staging)
-# default stage that is going to be run by command cap deploy
 set :rbenv_path, "/home/ubuntu/.rbenv"
 set :rbenv_ruby_version, "2.1.2"
 set :app_file, "web_hook_api.rb"
