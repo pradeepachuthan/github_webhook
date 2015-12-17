@@ -40,9 +40,6 @@ set :group, user
 set :runner, user
 # set :host, "#{user}@52.35.114.16"
 
-role :web, "54.169.24.153"                          # Your HTTP server, Apache/etc
-role :app, "54.169.24.153"                          # This may be the same as your `Web` server
-
 set :deploy_to, "/home/ubuntu"
 set :unicorn_conf, "#{deploy_to}/current/unicorn.rb"
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"

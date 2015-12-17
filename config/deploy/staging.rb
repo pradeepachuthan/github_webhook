@@ -6,7 +6,7 @@ set :branch, fetch(:branch, "master")
 
 set :rails_env, "staging"
 
-server '1.2.3.4', :app, :web, :db, :primary => true
+server '54.169.24.153', :app, :web, :db, :primary => true
 
 # ssh options
 default_run_options[:pty] = true
