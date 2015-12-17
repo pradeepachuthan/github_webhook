@@ -26,7 +26,7 @@ class AutoDeployment <  Sinatra::Application
   def self.perform_deployment(branch_name)
   	begin
       puts "THe branch name is", branch_name
-      SETTINGS["#{branch_name}"].each{ |hash| puts "THe hash roles are #{hash}" }
+      SETTINGS["#{branch_name}"].each{ |hash| puts "THe hash roles modified are #{hash["role"]}" }
   	  SETTINGS["#{branch_name}"].each{ |hash| system ("bundle exec cap #{hash["role"]} deploy") } 
     rescue => ex
   	  env['rack.errors'].puts ex
