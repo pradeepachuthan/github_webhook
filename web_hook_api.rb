@@ -12,6 +12,7 @@ class AutoDeployment <  Sinatra::Application
   def self.update(json_params)
     puts "1234 doing Inside update itesthowing"
     request_payload = JSON.parse(json_params)
+     p "After parsing the data"
     if request_payload.nil? or !request_payload.has_key?('ref')
       raise "Invalid Payload"
     else
@@ -24,6 +25,7 @@ class AutoDeployment <  Sinatra::Application
 
   def self.perform_deployment(branch_name)
   	begin
+
   	  SETTINGS["#{branch_name}"].each{ |hash| system ("bundle exec cap #{hash[:role]} deploy") } 
     rescue => ex
   	  env['rack.errors'].puts ex
