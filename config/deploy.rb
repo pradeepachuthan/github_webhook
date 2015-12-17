@@ -8,7 +8,7 @@ require 'capistrano-rbenv'
 set :application, "demo"
 set :repository,  "https://github.com/pradeepachuthan/github_webhook.git"
 set :bundle_gemfile, -> { 'Gemfile' }
-set :rbenv_path, "/usr/local/rbenv"
+set :rbenv_path, "/usr/local/bin/rbenv"
 set :rbenv_ruby_version, "2.1.2"
 set :app_file, "web_hook_api.rb"
 
@@ -23,10 +23,10 @@ set :group, user
 set :runner, user
 set :host, "#{user}@52.35.114.16"
 
-role :web, "52.35.114.16"                          # Your HTTP server, Apache/etc
-role :app, "52.35.114.16"                          # This may be the same as your `Web` server
+role :web, "54.169.24.153"                          # Your HTTP server, Apache/etc
+role :app, "54.169.24.153"                          # This may be the same as your `Web` server
 
-set :deploy_to, "/var/www"
+set :deploy_to, "/home/ubuntu"
 set :unicorn_conf, "#{deploy_to}/current/unicorn.rb"
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 

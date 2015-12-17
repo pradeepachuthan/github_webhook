@@ -38,7 +38,7 @@ end
 
 post '/deploy' do
 content_type :json
-  p "before updating", request.body.read
-  payload = JSON.parse request.body.read
-  puts payload
+ # payload = JSON.parse (request.body.read)
+#  puts "After uploading", payload
+AutoDeployment.update(request.body.read)
 end
