@@ -4,8 +4,6 @@ set :user, "ubuntu"
 # branch that is going to be used to deploy release. You may set it from console: cap deploy -s branch=_branch_name
 set :branch, fetch(:branch, "demo")
 
-set :rails_env, "staging"
-
 server '52.77.215.113', :app, :web, :db, :primary => true
 
 # ssh options
