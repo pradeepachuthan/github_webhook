@@ -1,48 +1,26 @@
-"demo":
-  - role: 'staging'
-    node_ip: '52.30.61.166'
-    notify: 'pradeep.achuthan@zipgo.in'
-    deploy_file_path: "/config/deploy"
-    config_file: "staging.rb"
-  - role: 'beta'
-    node_ip: '52.31.107.xx'
-    notify: 'pradeep.achuthan@zipgo.in'
-    deploy_file_path: "/config/deploy"
-    config_file: "staging.rb"
-  - role: 'production'
-    node_ip: '52.31.107.11'
-    notify: 'pradeep.achuthan@zipgo.in'
-    deploy_file_path: "/config/deploy"
-    config_file: "staging.rb"
 "develop":
   - role: 'staging'
-    node_ip: '52.30.61.166'
-    notify: 'pradeep.achuthan@zipgo.in'
-    deploy_file_path: "/config/deploy"
-    config_file: "staging.rb"
-  - role: 'beta'
+    name: 'beta machine'
     node_ip: '52.31.107.xx'
     notify: 'pradeep.achuthan@zipgo.in'
-    deploy_file_path: "/config/deploy"
-    config_file: "staging.rb"
-  - role: 'production'
-    node_ip: '52.31.107.11'
-    notify: 'pradeep.achuthan@zipgo.in'
-    deploy_file_path: "/config/deploy"
-    config_file: "staging.rb"
-"master":
+    deploy_path: "/home/ubuntu/deploy_config/deploy.staging.rb"
+    config_path: "/home/ubuntu/deploy_config/staging.rb"
   - role: 'staging'
-    node_ip: '52.30.61.166'
-    notify: 'pradeep.achuthan@zipgo.in'
-    deploy_file_path: "/config/deploy"
-    config_file: "staging.rb"
-  - role: 'beta'
-    node_ip: '52.31.107.xx'
-    notify: 'pradeep.achuthan@zipgo.in'
-    deploy_file_path: "/config/deploy"
-    config_file: "staging.rb"
-  - role: 'production'
+    name: 'staging machine'
     node_ip: '52.31.107.11'
     notify: 'pradeep.achuthan@zipgo.in'
-    deploy_file_path: "/config/deploy"
-    config_file: "staging.rb"
+    deploy_path: "/home/ubuntu/deploy_config/deploy.staging.rb"
+    config_path: "/home/ubuntu/deploy_config/staging.rb"
+"master":
+  - role: 'production'
+    name: 'beta machine'
+    node_ip: '52.30.61.166'
+    notify: 'pradeep.achuthan@zipgo.in'
+    deploy_path: "/home/ubuntu/deploy_config/deploy.production.rb"
+    config_path: "/home/ubuntu/deploy_config/production.rb"
+  - role: 'production'
+    name: 'production machine'
+    node_ip: '52.31.107.xx'
+    notify: 'pradeep.achuthan@zipgo.in'
+    deploy_path: "/home/ubuntu/deploy_config/deploy.staging.rb"
+    config_path: "/home/ubuntu/deploy_config/production.rb"
