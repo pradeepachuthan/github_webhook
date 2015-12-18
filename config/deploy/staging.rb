@@ -6,12 +6,12 @@ set :branch, fetch(:branch, "demo")
 
 set :rails_env, "staging"
 
-server '52.31.107.95', :app, :web, :db, :primary => true
+server '52.30.61.166', :app, :web, :db, :primary => true
 
 # ssh options
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 ssh_options[:auth_methods] = ["publickey"]
 # it is not wise to store amazon key in repository. You need to get it from instance owner and set path to it here
-#ssh_options[:keys] = ["#{ENV['PWD']}/config/amazon_keys/id_rsa"]
-#set :rsync_cmd, "rsync -rave 'ssh -i #{ENV['PWD']}/config/amazon_keys/id_rsa'"
+#ssh_options[:keys] = ["#{ENV['PWD']}/config/amazon_keys/zip_go_dev.pem"]
+#set :rsync_cmd, "rsync -rave 'ssh -i #{ENV['PWD']}/config/amazon_keys/zip_go_dev.pem'"

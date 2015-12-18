@@ -10,7 +10,7 @@ require 'capistrano/ext/multistage'
 
 # stages list. Dont muss up with rails environment. Stage is a settings for capistrano deployment.
 # you may run any stage with: cap production deploy
-set :stages, %w(staging)
+set :stages, %w(staging micro_staging)
 # default stage that is going to be run by command cap deploy
 set :default_stage, "staging"
 
