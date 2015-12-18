@@ -53,11 +53,30 @@ class AutoDeployment <  Sinatra::Application
 
   def self.perform_deployment(branch_name)
     @logger.error "perform_deployment"
+
+    transportify_home = "/home/ubuntu/transportify"
+
   	begin
   	  SETTINGS[branch_name].each{ |hash|
         role = hash['role']
+        deploy_file = hash['deploy_path']
+        config_file = hash['config_path']
+        config_filename = config_file.split("/").last
+
         @logger.info("deploying for #{role}")
-        system ("bundle exec cap #{role} deploy")
+        system ("cd #{transportify_home} && git stash && git stash clear && git pull && git checkout #{branch_name}")
+
+        @logger.info("remove existing config files")
+        system("rm -rf #{transportify_home}/config/deploy.rb")
+        system("rm -rf #{transportify_home}/config/deploy/*")
+
+        @logger.info("copy required config files")
+        system("cp #{deploy_file} #{transportify_home}/config/deploy.rb ")
+        system("cp #{config_file} #{transportify_home}/config/deploy/#{config_filename} ")
+
+        @logger.info("lets start actual deployment now.")
+        system ("cd #{transportify_home} && bundle exec cap #{role} deploy")
+        && bundle exec cap #{role} deploy")
       }
     rescue => ex
       @logger.error(ex.backtrace)
