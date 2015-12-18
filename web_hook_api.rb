@@ -10,6 +10,8 @@ SETTINGS ||= YAML.load_file(File.join(Dir.pwd, 'config/config.yml'))
 logger = Logger.new File.new('/var/log/deploy.log', 'w')
 
 
+
+
 class AutoDeployment <  Sinatra::Application
   @queue = :deploy
 
