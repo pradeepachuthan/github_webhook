@@ -76,7 +76,6 @@ class AutoDeployment <  Sinatra::Application
 
         @logger.info("lets start actual deployment now.")
         system ("cd #{transportify_home} && bundle exec cap #{role} deploy")
-        && bundle exec cap #{role} deploy")
       }
     rescue => ex
       @logger.error(ex.backtrace)
