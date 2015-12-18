@@ -1,4 +1,16 @@
-  demo:
+"develop":
   - role: 'staging'
+    node_ip: '52.77.215.113'
+    notify: 'pradeep.achuthan@zipgo.in'
+    deploy_file_path: "..."
+    config_file: "..."
+  - role: 'beta'
+    node_ip: '52.31.107.xx'
+    notify: 'pradeep.achuthan@zipgo.in'
+    deploy_file_path: "..."
+    config_file: "..."
+  - role: 'production'
     node_ip: '52.31.107.95'
     notify: 'pradeep.achuthan@zipgo.in'
+    deploy_file_path: "..."
+    config_file: "..."

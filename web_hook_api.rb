@@ -6,46 +6,47 @@ require 'yaml'
 set :bind, '0.0.0.0'
 
 SETTINGS ||= YAML.load_file(File.join(Dir.pwd, 'config/config.yml'))
+logger = Logger.new File.new('/var/log/deploy.log', 'w')
+
 
 class AutoDeployment <  Sinatra::Application
   @queue = :deploy
 
-  def self.update(json_params)
-    puts "1234 doing Inside update itesthowing"
-    request_payload = JSON.parse(json_params)
-     p "After parsing the data"
-    if request_payload.nil? or !request_payload.has_key?('ref')
-      raise "Invalid Payload"
-    else
-    branch_name = request_payload["ref"].split('/').last
+  def self.perform(payload)
+    logger.info("payload: #{payload}")
+
+    raise "Invalid Payload" if payload.nil? or !payload.has_key?('ref')
+
+    branch_name = payload["ref"].split('/').last
     return nil unless SETTINGS.keys.include?(branch_name)
-      perform_deployment(branch_name)
-     notify_users(SETTINGS["#{branch_name}"].each { |hash| notify_users(hash[:notify]) })
-    end
+    perform_deployment(branch_name)
+    # notify_users()
   end
 
   def self.perform_deployment(branch_name)
   	begin
-      puts "THe branch name is", branch_name
-      SETTINGS["#{branch_name}"].each{ |hash| puts "THe hash roles modified are #{hash['role']}" }
-      #Resque.enque(RunDeployment, branch_name)
-  	  SETTINGS["#{branch_name}"].each{ |hash| system ("bundle exec cap #{hash['role']} deploy") } 
+  	  SETTINGS[branch_name].each{ |hash|
+        role = hash['role']
+        logger.info("deploying for #{role}")
+        # system ("bundle exec cap #{role} deploy")
+      } 
     rescue => ex
-  	  puts ex
+      logger.error(ex.backtrace)
+      notify_error
   	end
   end
 
-  def self.notify_users(emails_array)
-    
+  def self.notify_users
+  end
+
+  def self.notify_error
   end
 
 end
 
 post '/deploy' do
-content_type :json
- # payload = JSON.parse (request.body.read)
-#  puts "After uploading", payload
-
-#Resque.enqueue(AutoDeployment, request.body.read)
-AutoDeployment.update(request.body.read)
+  logger.info("got a new request.")
+  content_type :json
+  Resque.enqueue(AutoDeployment, JSON.parse(request.body.read))
+  # AutoDeployment.update(request.body.read)
 end
