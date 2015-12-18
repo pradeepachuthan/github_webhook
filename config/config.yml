@@ -1,16 +1,48 @@
-"develop":
+"demo":
   - role: 'staging'
-    node_ip: '52.77.215.113'
+    node_ip: '52.30.61.166'
     notify: 'pradeep.achuthan@zipgo.in'
-    deploy_file_path: "..."
-    config_file: "..."
+    deploy_file_path: "/config/deploy"
+    config_file: "staging.rb"
   - role: 'beta'
     node_ip: '52.31.107.xx'
     notify: 'pradeep.achuthan@zipgo.in'
-    deploy_file_path: "..."
-    config_file: "..."
+    deploy_file_path: "/config/deploy"
+    config_file: "staging.rb"
   - role: 'production'
-    node_ip: '52.31.107.95'
+    node_ip: '52.31.107.11'
     notify: 'pradeep.achuthan@zipgo.in'
-    deploy_file_path: "..."
-    config_file: "..."
+    deploy_file_path: "/config/deploy"
+    config_file: "staging.rb"
+"develop":
+  - role: 'staging'
+    node_ip: '52.30.61.166'
+    notify: 'pradeep.achuthan@zipgo.in'
+    deploy_file_path: "/config/deploy"
+    config_file: "staging.rb"
+  - role: 'beta'
+    node_ip: '52.31.107.xx'
+    notify: 'pradeep.achuthan@zipgo.in'
+    deploy_file_path: "/config/deploy"
+    config_file: "staging.rb"
+  - role: 'production'
+    node_ip: '52.31.107.11'
+    notify: 'pradeep.achuthan@zipgo.in'
+    deploy_file_path: "/config/deploy"
+    config_file: "staging.rb"
+"master":
+  - role: 'staging'
+    node_ip: '52.30.61.166'
+    notify: 'pradeep.achuthan@zipgo.in'
+    deploy_file_path: "/config/deploy"
+    config_file: "staging.rb"
+  - role: 'beta'
+    node_ip: '52.31.107.xx'
+    notify: 'pradeep.achuthan@zipgo.in'
+    deploy_file_path: "/config/deploy"
+    config_file: "staging.rb"
+  - role: 'production'
+    node_ip: '52.31.107.11'
+    notify: 'pradeep.achuthan@zipgo.in'
+    deploy_file_path: "/config/deploy"
+    config_file: "staging.rb"
