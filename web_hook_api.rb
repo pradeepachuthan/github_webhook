@@ -41,6 +41,8 @@ class AutoDeployment <  Sinatra::Application
     end
 
     branch_name = payload["ref"].split('/').last
+    @logger.info("payload: #{branch_name}")
+    @logger.info("Available branch names in Settings keys: #{SETTINGS.keys}")
     if !SETTINGS.keys.include?(branch_name)
       @logger.debug "invalid log. -- TODO: change this message, make it more meaningful."
       return nil
