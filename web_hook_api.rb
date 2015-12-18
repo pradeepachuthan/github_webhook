@@ -73,5 +73,6 @@ end
 
 post '/deploy' do
   content_type :json
-  Resque.enqueue(AutoDeployment, JSON.parse(request.body.read))
+  # Resque.enqueue(AutoDeployment, JSON.parse(request.body.read))
+  AutoDeployment.perform(JSON.parse(request.body.read))
 end
